@@ -9,8 +9,8 @@ const SWAPIFilmsUrl = 'films/'
 
 const Character = ({ character }) => {
    
-     const [SWAPIFilmsData, setSWAPIFilmsData] = useState(null)
-     
+   
+
      const Container = styled.div`
           display: flex;
           flex-direction: column;
@@ -31,7 +31,7 @@ const Character = ({ character }) => {
                color: red;
                transition: all 1s ease-in-out;
           }
-          }
+          };
 
           `
      const InfoWrapper = styled.div`
@@ -44,31 +44,55 @@ const Character = ({ character }) => {
                color: red;
                transition: all 1s ease-in-out;
           }
+          span.hidden {
+               display: none
+          }
+
      `
+
+
+
+     const [SWAPIFilmsData, setSWAPIFilmsData] = useState(null)
      useEffect(() => {
           axios.get(`${SWAPIUrl}${SWAPIFilmsUrl}`)
-            .then(response => {
-          //     console.log('working')
-              setSWAPIFilmsData(response.data)
-            })
-            .catch(err => {
-              console.log('error')
-            })
-          }, []
-        )
-          SWAPIFilmsData && console.log(SWAPIFilmsData.results)
+               .then(response => {
+                    //     console.log('working')
+                    setSWAPIFilmsData(response.data.results)
+               })
+               .catch(err => {
+                    console.log('error')
+               })
+     }, []
+     )
+
+     const [movieShow, setMovieShow] = useState(false)
+     
+     const clickHandler = e => {
+          setMovieShow (!movieShow)
+     }
+
      return (
      <Container>
           <InfoWrapper textColor='yellow'>
-               <span>Name: {character.name}</span>
+              Name: {character.name}
           </InfoWrapper>
           <InfoWrapper textColor='yellow'>
                Birth Year: {character.birth_year}
           </InfoWrapper>
           <InfoWrapper textColor='yellow'>
-               {
-               SWAPIFilmsData && <Films films={SWAPIFilmsData.results}/>
-               }
+          <button onClick={clickHandler}><h1 textColor='yellow'>
+                    
+                    Films
+                   
+               </h1>
+               </button>
+               { movieShow ? (
+               <span className='movies'>
+                    {
+                         SWAPIFilmsData && <Films films={character.films} filmsFromFilmsAPI={SWAPIFilmsData}/>
+                    }
+               </span>
+                ) : ( null ) }         
           </InfoWrapper>
                {/* <Character /> */}
      </Container>
