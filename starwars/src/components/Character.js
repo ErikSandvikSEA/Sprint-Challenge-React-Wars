@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 
-const Character = () => {
+const Character = ({ character }) => {
      // Try to think through what state you'll need for this app before starting. Then build out
      // the state properties here.
    
@@ -14,7 +14,9 @@ const Character = () => {
    
      return (
        
-          <div></div>
+          <div>
+               <Character />
+          </div>
 
 
      );

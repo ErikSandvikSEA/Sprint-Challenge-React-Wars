@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const CharactersPage = ({ characters }) => {
      // set up state for your data
      return (
-       <div className="posts-container-wrapper">
+       <div className="characters-container">
          {
           characters.map(individualCharacter => {
             return <Character key={''} character={individualCharacter}/>
