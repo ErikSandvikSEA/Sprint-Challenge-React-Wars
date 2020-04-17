@@ -1,10 +1,15 @@
 // Write your Character component here
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Films from './Films'
+import axios from 'axios'
 import styled from 'styled-components'
 
-
+const SWAPIUrl = 'https://swapi.py4e.com/api/'
+const SWAPIFilmsUrl = 'films/'
 
 const Character = ({ character }) => {
+   
+     const [SWAPIFilmsData, setSWAPIFilmsData] = useState(null)
      
      const Container = styled.div`
           display: flex;
@@ -40,8 +45,18 @@ const Character = ({ character }) => {
                transition: all 1s ease-in-out;
           }
      `
-     
-   
+     useEffect(() => {
+          axios.get(`${SWAPIUrl}${SWAPIFilmsUrl}`)
+            .then(response => {
+          //     console.log('working')
+              setSWAPIFilmsData(response.data)
+            })
+            .catch(err => {
+              console.log('error')
+            })
+          }, []
+        )
+          SWAPIFilmsData && console.log(SWAPIFilmsData.results)
      return (
      <Container>
           <InfoWrapper textColor='yellow'>
@@ -49,6 +64,11 @@ const Character = ({ character }) => {
           </InfoWrapper>
           <InfoWrapper textColor='yellow'>
                Birth Year: {character.birth_year}
+          </InfoWrapper>
+          <InfoWrapper textColor='yellow'>
+               {
+               SWAPIFilmsData && <Films films={SWAPIFilmsData.results}/>
+               }
           </InfoWrapper>
                {/* <Character /> */}
      </Container>
