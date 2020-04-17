@@ -5,18 +5,33 @@ import styled from 'styled-components'
 
 
 const Character = ({ character }) => {
-     // Try to think through what state you'll need for this app before starting. Then build out
-     // the state properties here.
-   
-     // Fetch characters from the API in an effect hook. Remember, anytime you have a 
-     // side effect in a component, you want to think about which state and/or props it should
-     // sync up with, if any.
+     
+     const Container = styled.div`
+          border: 1px solid rgb(210, 210, 210);
+          box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+          margin: 8px;
+          padding: 12px;
+          background-color: white;
+          width: 50%;
+
+          a {
+          color: green;
+
+          &:hover {
+               color: red;
+               transition: all 1s ease-in-out;
+          }
+          }
+
+          `
    
      return (
-       
+     <Container>
           <div>
-               <Character />
+               Name: {character.name}
           </div>
+               {/* <Character /> */}
+     </Container>
 
 
      );

@@ -5,12 +5,14 @@ import styled from 'styled-components'
 
 
 const CharactersPage = ({ characters }) => {
+
+     console.log(characters)
      // set up state for your data
      return (
        <div className="characters-container">
          {
           characters.map(individualCharacter => {
-            return <Character key={''} character={individualCharacter}/>
+            return <Character key={individualCharacter.name} character={individualCharacter}/>
          })
        }
        </div>

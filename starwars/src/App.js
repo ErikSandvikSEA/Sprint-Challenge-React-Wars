@@ -15,10 +15,8 @@ const App = () => {
   useEffect(() => {
     axios.get(`${SWAPIUrl}`)
       .then(response => {
-        console.log('working')
-        
-        setSWAPICharactersData(response.data.results)
-        console.log(response.data.results)
+        // console.log('working')
+        setSWAPICharactersData(response.data)
       })
       .catch(err => {
         console.log('error')
@@ -33,7 +31,7 @@ const App = () => {
   return (
     <div className="App">
       {
-     SWAPICharactersData && <CharactersPage characters={SWAPICharactersData} />
+     SWAPICharactersData && <CharactersPage characters={SWAPICharactersData.results} />
       }
     </div>
   );
