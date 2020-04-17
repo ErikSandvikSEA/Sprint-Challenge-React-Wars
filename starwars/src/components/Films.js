@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Film from './Film'
-import styled from 'styled-components'
-import axios from 'axios'
+
 
 
 
