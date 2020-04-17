@@ -8,8 +8,8 @@ const SWAPIUrl = 'https://swapi.py4e.com/api/'
 const SWAPIFilmsUrl = 'films/'
 
 const Character = ({ character }) => {
-   
-   
+
+
 
      const Container = styled.div`
           display: flex;
@@ -66,39 +66,39 @@ const Character = ({ character }) => {
      )
 
      const [movieShow, setMovieShow] = useState(false)
-     
+
      const clickHandler = e => {
-          setMovieShow (!movieShow)
+          setMovieShow(!movieShow)
      }
 
      return (
-     <Container>
-          <InfoWrapper textColor='yellow'>
-              Name: {character.name}
-          </InfoWrapper>
-          <InfoWrapper textColor='yellow'>
-               Birth Year: {character.birth_year}
-          </InfoWrapper>
-          <InfoWrapper textColor='yellow'>
-          <button onClick={clickHandler}><h1 textColor='yellow'>
-                    
-                    Films
-                   
-               </h1>
-               </button>
-               { movieShow ? (
-               <span className='movies'>
+          <Container>
+               <InfoWrapper textColor='yellow'>
+                    Name: {character.name}
+               </InfoWrapper>
+               <InfoWrapper textColor='yellow'>
+                    Birth Year: {character.birth_year}
+               </InfoWrapper>
+               <InfoWrapper textColor='yellow'>
+                    <button onClick={clickHandler}>
+                         <h1 textColor='yellow'>Films</h1>
+                    </button>
                     {
-                         SWAPIFilmsData && <Films films={character.films} filmsFromFilmsAPI={SWAPIFilmsData}/>
+                         movieShow ? 
+                         (
+                              <span>
+                                   {
+                                       SWAPIFilmsData && <Films films={character.films} filmsFromFilmsAPI={SWAPIFilmsData} />
+                                   }
+                              </span>
+                         ) : (null)
                     }
-               </span>
-                ) : ( null ) }         
-          </InfoWrapper>
+               </InfoWrapper>
                {/* <Character /> */}
-     </Container>
+          </Container>
 
 
      );
-   }
-   
-   export default Character;
+}
+
+export default Character;
